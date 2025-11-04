@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Portfolio - Engineer & Security Researcher</title>
+    <title>Md Daud - Security Researcher & Engineer</title>
     <style>
         * {
             margin: 0;
@@ -12,473 +12,216 @@
         }
 
         body {
-            font-family: 'Courier New', monospace;
-            background: #000000;
-            color: #ffffff;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            background: #ffffff;
+            color: #202124;
             line-height: 1.6;
             overflow-x: hidden;
         }
 
-        .scanline {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: repeating-linear-gradient(
-                0deg,
-                rgba(0, 255, 0, 0.03) 0px,
-                transparent 1px,
-                transparent 2px,
-                rgba(0, 255, 0, 0.03) 3px
-            );
-            pointer-events: none;
-            z-index: 1000;
-        }
-
         .container {
-            max-width: 900px;
+            max-width: 800px;
             margin: 0 auto;
-            padding: 0 20px;
-            position: relative;
-        }
-
-        .terminal-prompt {
-            color: #00ff00;
-            font-weight: bold;
+            padding: 80px 24px;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
         }
 
         header {
-            padding: 60px 0;
-            border-bottom: 2px solid #333333;
-        }
-
-        .header-line {
-            font-size: 0.9rem;
-            margin: 5px 0;
-            color: #00ff00;
-        }
-
-        .ascii-art {
-            font-size: 0.5rem;
-            line-height: 1.2;
-            color: #ffffff;
-            margin: 30px 0;
-            white-space: pre;
-            overflow-x: auto;
+            margin-bottom: 64px;
+            animation: fadeInUp 0.8s ease-out;
         }
 
         h1 {
-            font-size: 2rem;
-            color: #ffffff;
-            margin: 20px 0;
-            font-weight: normal;
-            letter-spacing: 2px;
+            font-size: 48px;
+            font-weight: 400;
+            letter-spacing: -0.5px;
+            margin-bottom: 8px;
+            color: #202124;
         }
 
-        .typing-effect {
-            overflow: hidden;
-            border-right: 3px solid #00ff00;
-            white-space: nowrap;
-            animation: typing 2s steps(40, end), blink 0.75s step-end infinite;
+        .subtitle {
+            font-size: 20px;
+            color: #5f6368;
+            font-weight: 300;
+            margin-bottom: 4px;
         }
 
-        @keyframes typing {
-            from { width: 0 }
-            to { width: 100% }
+        .role {
+            font-size: 16px;
+            color: #80868b;
+            font-weight: 300;
         }
 
-        @keyframes blink {
-            50% { border-color: transparent }
+        .divider {
+            width: 48px;
+            height: 2px;
+            background: #202124;
+            margin: 48px 0;
+            animation: expandWidth 0.8s ease-out 0.3s both;
         }
 
-        .section {
-            padding: 50px 0;
-            border-bottom: 1px solid #222222;
+        .links {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 24px;
+            animation: fadeInUp 0.8s ease-out 0.4s both;
         }
 
-        .section-header {
-            color: #00ff00;
-            font-size: 1.2rem;
-            margin-bottom: 30px;
+        .link-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            text-decoration: none;
+            color: #202124;
+            font-size: 15px;
+            padding: 12px 0;
             position: relative;
-            padding-left: 20px;
+            transition: all 0.2s ease;
         }
 
-        .section-header::before {
-            content: '>';
-            position: absolute;
-            left: 0;
-            animation: blink 1s infinite;
-        }
-
-        .command-line {
-            background: #0a0a0a;
-            border: 1px solid #333333;
-            padding: 20px;
-            margin: 20px 0;
-            position: relative;
-            font-family: 'Courier New', monospace;
-        }
-
-        .command-line::before {
-            content: '$ ';
-            color: #00ff00;
-            font-weight: bold;
-        }
-
-        .grid-layout {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 20px;
-            margin: 30px 0;
-        }
-
-        .matrix-card {
-            background: #000000;
-            border: 1px solid #00ff00;
-            padding: 25px;
-            position: relative;
-            transition: all 0.3s ease;
-        }
-
-        .matrix-card::before {
+        .link-item::after {
             content: '';
             position: absolute;
-            top: 0;
+            bottom: 8px;
             left: 0;
-            right: 0;
-            height: 2px;
-            background: linear-gradient(90deg, transparent, #00ff00, transparent);
-            animation: scan 2s linear infinite;
+            width: 0;
+            height: 1px;
+            background: #202124;
+            transition: width 0.3s ease;
         }
 
-        @keyframes scan {
-            0% { transform: translateY(0); opacity: 1; }
-            100% { transform: translateY(300px); opacity: 0; }
+        .link-item:hover::after {
+            width: 100%;
         }
 
-        .matrix-card:hover {
-            background: #001100;
-            box-shadow: 0 0 20px rgba(0, 255, 0, 0.3);
-            transform: translateX(10px);
+        .link-item:hover {
+            transform: translateX(4px);
         }
 
-        .card-title {
-            color: #00ff00;
-            font-size: 1.1rem;
-            margin-bottom: 10px;
-            text-transform: uppercase;
-        }
-
-        .card-content {
-            color: #cccccc;
-            font-size: 0.9rem;
-            line-height: 1.6;
-        }
-
-        .project-item {
-            background: #0a0a0a;
-            border-left: 3px solid #00ff00;
-            padding: 25px;
-            margin: 20px 0;
-            transition: all 0.3s ease;
-        }
-
-        .project-item:hover {
-            border-left-width: 8px;
-            padding-left: 30px;
-            background: #001100;
-        }
-
-        .project-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 15px;
-            flex-wrap: wrap;
-        }
-
-        .project-title {
-            color: #ffffff;
-            font-size: 1.2rem;
-        }
-
-        .project-date {
-            color: #00ff00;
-            font-size: 0.85rem;
-        }
-
-        .project-desc {
-            color: #999999;
-            margin-bottom: 15px;
-            line-height: 1.7;
-        }
-
-        .tag-line {
-            display: flex;
-            gap: 10px;
-            flex-wrap: wrap;
-        }
-
-        .tag {
-            background: transparent;
-            border: 1px solid #00ff00;
-            color: #00ff00;
-            padding: 5px 12px;
-            font-size: 0.75rem;
-            text-transform: uppercase;
-        }
-
-        .contact-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 15px;
-            margin: 30px 0;
-        }
-
-        .contact-item {
-            background: #000000;
-            border: 1px solid #333333;
-            padding: 20px;
-            text-align: center;
-            transition: all 0.3s ease;
-            cursor: pointer;
-            text-decoration: none;
-            color: #ffffff;
-            display: block;
-        }
-
-        .contact-item:hover {
-            border-color: #00ff00;
-            background: #001100;
-            transform: scale(1.05);
-        }
-
-        .contact-label {
-            color: #00ff00;
-            font-size: 0.8rem;
-            text-transform: uppercase;
-            margin-bottom: 5px;
-        }
-
-        .status-bar {
-            position: fixed;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            background: #000000;
-            border-top: 1px solid #00ff00;
-            padding: 10px 20px;
-            font-size: 0.85rem;
-            display: flex;
-            justify-content: space-between;
-            z-index: 100;
-        }
-
-        .status-item {
-            color: #00ff00;
+        .icon {
+            width: 20px;
+            height: 20px;
+            stroke: currentColor;
+            fill: none;
+            stroke-width: 2;
+            stroke-linecap: round;
+            stroke-linejoin: round;
         }
 
         footer {
-            padding: 40px 0 80px;
+            margin-top: 80px;
+            padding-top: 32px;
+            border-top: 1px solid #e8eaed;
             text-align: center;
-            color: #666666;
-            font-size: 0.85rem;
+            color: #80868b;
+            font-size: 14px;
+            animation: fadeIn 1s ease-out 0.6s both;
         }
 
-        .blink {
-            animation: blink 1s infinite;
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
 
-        @media (max-width: 768px) {
-            .ascii-art {
-                font-size: 0.35rem;
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+        @keyframes expandWidth {
+            from {
+                width: 0;
+            }
+            to {
+                width: 48px;
+            }
+        }
+
+        @media (max-width: 640px) {
+            .container {
+                padding: 48px 20px;
             }
 
             h1 {
-                font-size: 1.5rem;
+                font-size: 36px;
             }
 
-            .grid-layout {
-                grid-template-columns: 1fr;
+            .subtitle {
+                font-size: 18px;
+            }
+
+            .links {
+                flex-direction: column;
+                gap: 16px;
             }
         }
     </style>
 </head>
 <body>
-    <div class="scanline"></div>
+    <div class="container">
+        <header>
+            <h1>Md Daud</h1>
+            <p class="subtitle">Security Researcher</p>
+            <p class="role">Engineer</p>
+        </header>
 
-    <div class="status-bar">
-        <span class="status-item">SYSTEM: ONLINE</span>
-        <span class="status-item">USER: ROOT</span>
-        <span class="status-item" id="time"></span>
+        <div class="divider"></div>
+
+        <nav class="links">
+            <a href="https://x.com/daud0x0" target="_blank" rel="noopener noreferrer" class="link-item">
+                <svg class="icon" viewBox="0 0 24 24">
+                    <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+                </svg>
+                X (Twitter)
+            </a>
+
+            <a href="https://bugcrowd.com/daud0x0" target="_blank" rel="noopener noreferrer" class="link-item">
+                <svg class="icon" viewBox="0 0 24 24">
+                    <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/>
+                </svg>
+                Bugcrowd
+            </a>
+
+            <a href="https://hackerone.com/daud0x0" target="_blank" rel="noopener noreferrer" class="link-item">
+                <svg class="icon" viewBox="0 0 24 24">
+                    <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/>
+                </svg>
+                HackerOne
+            </a>
+
+            <a href="https://github.com/daud0x0" target="_blank" rel="noopener noreferrer" class="link-item">
+                <svg class="icon" viewBox="0 0 24 24">
+                    <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/>
+                </svg>
+                GitHub
+            </a>
+
+            <a href="https://instagram.com/daud0x0" target="_blank" rel="noopener noreferrer" class="link-item">
+                <svg class="icon" viewBox="0 0 24 24">
+                    <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/>
+                    <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/>
+                    <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/>
+                </svg>
+                Instagram
+            </a>
+        </nav>
+
+        <footer>
+            <p>© 2025 Md Daud. All rights reserved.</p>
+        </footer>
     </div>
-
-    <header>
-        <div class="container">
-            <div class="header-line">[user@localhost ~]$ ./init_portfolio.sh</div>
-            <div class="header-line">[INFO] Loading user profile...</div>
-            <div class="header-line">[SUCCESS] Connection established</div>
-            
-            <div class="ascii-art">
- ██████╗  ██████╗  ██████╗ ██████╗ ██╗     ██╗███████╗███████╗
-██╔════╝ ██╔═══██╗██╔═══██╗██╔══██╗██║     ██║██╔════╝██╔════╝
-██║  ███╗██║   ██║██║   ██║██║  ██║██║     ██║█████╗  █████╗  
-██║   ██║██║   ██║██║   ██║██║  ██║██║     ██║██╔══╝  ██╔══╝  
-╚██████╔╝╚██████╔╝╚██████╔╝██████╔╝███████╗██║██║     ███████╗
- ╚═════╝  ╚═════╝  ╚═════╝ ╚═════╝ ╚══════╝╚═╝╚═╝     ╚══════╝
-            </div>
-
-            <h1>~/your_name</h1>
-            <div class="command-line">whoami: Engineer | Security_Researcher | CEO@GoodLife | Athlete | Philosopher</div>
-            <p style="color: #999999; margin-top: 20px;">
-                > Building secure systems and breaking boundaries in code and life.<br>
-                > pwd: /home/founder/<a href="https://goodlife.com" style="color: #00ff00; text-decoration: none;" target="_blank">goodlife.com</a>
-            </p>
-        </div>
-    </header>
-
-    <section class="section">
-        <div class="container">
-            <div class="section-header">cat capabilities.txt</div>
-            
-            <div class="grid-layout">
-                <div class="matrix-card">
-                    <div class="card-title">[LEADERSHIP]</div>
-                    <div class="card-content">
-                        Founder & CEO at GoodLife. Building teams, driving strategy, scaling products from 0→1.
-                    </div>
-                </div>
-
-                <div class="matrix-card">
-                    <div class="card-title">[ENGINEERING]</div>
-                    <div class="card-content">
-                        Full-stack systems architect. Clean code advocate. Scalability obsessed.
-                    </div>
-                </div>
-
-                <div class="matrix-card">
-                    <div class="card-title">[SECURITY_RESEARCH]</div>
-                    <div class="card-content">
-                        Penetration testing. Vulnerability hunting. CVE contributor. Ethical hacking.
-                    </div>
-                </div>
-
-                <div class="matrix-card">
-                    <div class="card-title">[CALISTHENICS]</div>
-                    <div class="card-content">
-                        Bodyweight mastery. Progressive overload. Discipline through movement.
-                    </div>
-                </div>
-
-                <div class="matrix-card">
-                    <div class="card-title">[PHILOSOPHY]</div>
-                    <div class="card-content">
-                        Existentialism. Ethics. Epistemology. Critical thinking for fun.
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section class="section">
-        <div class="container">
-            <div class="section-header">ls -la ~/projects/</div>
-
-            <div class="project-item">
-                <div class="project-header">
-                    <div class="project-title">GoodLife_Platform</div>
-                    <div class="project-date">[2023 - PRESENT]</div>
-                </div>
-                <div class="project-desc">
-                    Founded and leading GoodLife as CEO. Building wellness platform from ground up. Managing product vision, technical architecture, team growth, and strategic direction.
-                </div>
-                <div class="tag-line">
-                    <span class="tag">Leadership</span>
-                    <span class="tag">Strategy</span>
-                    <span class="tag">Product</span>
-                </div>
-            </div>
-
-            <div class="project-item">
-                <div class="project-header">
-                    <div class="project-title">Security_Audit_Framework</div>
-                    <div class="project-date">[ONGOING]</div>
-                </div>
-                <div class="project-desc">
-                    Automated vulnerability scanner for web applications. Built custom exploit toolkit. Contributed to multiple CVE discoveries and responsible disclosures.
-                </div>
-                <div class="tag-line">
-                    <span class="tag">Python</span>
-                    <span class="tag">Security</span>
-                    <span class="tag">CVE</span>
-                    <span class="tag">Automation</span>
-                </div>
-            </div>
-
-            <div class="project-item">
-                <div class="project-header">
-                    <div class="project-title">Distributed_Systems_Architecture</div>
-                    <div class="project-date">[2022]</div>
-                </div>
-                <div class="project-desc">
-                    Designed microservices architecture prioritizing security, fault tolerance, and observability. Implemented zero-trust network model.
-                </div>
-                <div class="tag-line">
-                    <span class="tag">Go</span>
-                    <span class="tag">Docker</span>
-                    <span class="tag">K8s</span>
-                    <span class="tag">PostgreSQL</span>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section class="section">
-        <div class="container">
-            <div class="section-header">./connect.sh --help</div>
-            <p style="color: #999999; margin-bottom: 30px;">
-                > Open to discussions about security, engineering, entrepreneurship, or philosophy<br>
-                > Usage: ./connect.sh [email|github|linkedin|twitter]
-            </p>
-
-            <div class="contact-grid">
-                <a href="mailto:your.email@example.com" class="contact-item">
-                    <div class="contact-label">[EMAIL]</div>
-                    <div>Send_Message</div>
-                </a>
-                <a href="https://github.com/yourusername" class="contact-item" target="_blank">
-                    <div class="contact-label">[GITHUB]</div>
-                    <div>View_Code</div>
-                </a>
-                <a href="https://linkedin.com/in/yourprofile" class="contact-item" target="_blank">
-                    <div class="contact-label">[LINKEDIN]</div>
-                    <div>Professional</div>
-                </a>
-                <a href="https://twitter.com/yourhandle" class="contact-item" target="_blank">
-                    <div class="contact-label">[TWITTER]</div>
-                    <div>Thoughts_Feed</div>
-                </a>
-            </div>
-        </div>
-    </section>
-
-    <footer>
-        <div class="container">
-            <p>© 2025 | SYSTEM_STATUS: OPERATIONAL | BUILD_v1.0.0</p>
-        </div>
-    </footer>
-
-    <script>
-        function updateTime() {
-            const now = new Date();
-            const timeStr = now.toTimeString().split(' ')[0];
-            document.getElementById('time').textContent = `TIME: ${timeStr}`;
-        }
-        
-        updateTime();
-        setInterval(updateTime, 1000);
-    </script>
 </body>
 </html>
